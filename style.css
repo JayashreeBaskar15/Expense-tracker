@@ -1,0 +1,373 @@
+/* Expense Tracker — Custom Styles (Bootstrap 5 base) */
+
+:root {
+  --radius: 12px;
+  --transition: 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme="dark"] {
+  --bg: #0b0d13;
+  --bg-elevated: #12151e;
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --navbar-bg: rgba(18, 21, 30, 0.85);
+  --input-bg: #1a1f2e;
+  --input-border: rgba(255, 255, 255, 0.1);
+  --table-hover: rgba(255, 255, 255, 0.04);
+  --shadow: rgba(0, 0, 0, 0.4);
+  --progress-bg: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] {
+  --bg: #f1f5f9;
+  --bg-elevated: #ffffff;
+  --glass: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --navbar-bg: rgba(255, 255, 255, 0.9);
+  --input-bg: #ffffff;
+  --input-border: #e2e8f0;
+  --table-hover: rgba(0, 0, 0, 0.03);
+  --shadow: rgba(0, 0, 0, 0.08);
+  --progress-bg: #e2e8f0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* Navbar */
+.app-navbar {
+  background: var(--navbar-bg) !important;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--glass-border);
+  padding-block: 0.6rem;
+}
+
+.navbar-brand {
+  color: var(--text) !important;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 1.1rem;
+}
+
+.nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.85rem !important;
+  border-radius: 8px;
+  transition: color var(--transition), background var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text) !important;
+  background: var(--glass);
+}
+
+.navbar-toggler {
+  border-color: var(--glass-border);
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+.btn-theme {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+[data-theme="dark"] .icon-light { display: inline; }
+[data-theme="dark"] .icon-dark { display: none; }
+[data-theme="light"] .icon-light { display: none; }
+[data-theme="light"] .icon-dark { display: inline; }
+
+/* Glass cards */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 24px var(--shadow);
+}
+
+/* Pages */
+.page { display: none; }
+.page.active { display: block; animation: fadeIn 0.35s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.month-picker {
+  max-width: 180px;
+  background: var(--input-bg);
+  border-color: var(--input-border);
+  color: var(--text);
+}
+
+/* Stat cards */
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  transition: transform var(--transition);
+}
+
+.stat-card:hover { transform: translateY(-3px); }
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.stat-icon.income  { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+.stat-icon.expense { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+.stat-icon.balance { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+.stat-icon.budget  { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+
+.stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.stat-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+/* Budget progress */
+.budget-progress {
+  height: 10px;
+  background: var(--progress-bg);
+  border-radius: 999px;
+}
+
+.budget-progress .progress-bar {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+.budget-progress .progress-bar.over {
+  background: linear-gradient(90deg, #ef4444, #f59e0b);
+}
+
+/* Charts */
+.chart-card {
+  padding: 1.25rem;
+}
+
+.chart-card h5 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.chart-card canvas {
+  max-height: 260px;
+}
+
+/* Tables */
+.app-table {
+  color: var(--text);
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--text);
+  --bs-table-hover-color: var(--text);
+  --bs-table-hover-bg: var(--table-hover);
+  font-size: 0.9rem;
+}
+
+.app-table thead th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  border-bottom-color: var(--glass-border);
+  font-weight: 600;
+}
+
+.app-table td {
+  border-bottom-color: var(--glass-border);
+  vertical-align: middle;
+}
+
+/* Badges */
+.badge-income {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.badge-expense {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.badge-cat {
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* Forms */
+.form-control,
+.form-select {
+  background: var(--input-bg);
+  border-color: var(--input-border);
+  color: var(--text);
+  border-radius: 8px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: var(--input-bg);
+  border-color: var(--primary);
+  color: var(--text);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.type-toggle {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.type-toggle .btn {
+  flex: 1;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  border: none;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+}
+
+.btn-outline-primary {
+  border-color: var(--primary);
+  color: var(--primary);
+  border-radius: 8px;
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Action buttons */
+.btn-action {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--glass-border);
+  background: transparent;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.btn-action:hover { color: var(--primary); border-color: var(--primary); }
+.btn-action.delete:hover { color: #ef4444; border-color: #ef4444; }
+
+/* Reports */
+.report-stat h3 {
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+/* Modal */
+.modal-content.glass {
+  background: var(--bg-elevated);
+  color: var(--text);
+}
+
+[data-theme="dark"] .btn-close {
+  filter: invert(1);
+}
+
+/* Toast */
+.app-toast {
+  background: var(--bg-elevated);
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+}
+
+/* Text utilities */
+.text-muted { color: var(--text-muted) !important; }
+
+/* Responsive */
+@media (max-width: 767px) {
+  .page-header h1 { font-size: 1.3rem; }
+  .stat-value { font-size: 1.15rem; }
+}
